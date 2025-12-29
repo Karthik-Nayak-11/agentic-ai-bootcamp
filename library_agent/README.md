@@ -28,7 +28,7 @@ An optional report generator processes CSV data to generate simple library usage
 ---
 
 ## Project Structure
-
+```text
 library_agent/
 │
 ├── src/

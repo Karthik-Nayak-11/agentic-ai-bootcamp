@@ -17,7 +17,7 @@ class MovieAgent:
 
     def save_movies(self):
         with open(self.data_path,'w') as file:
-            json.dump(self.movies,file, incent=2)
+            json.dump(self.movies,file, indent=2)
 
     def add_movie(self,title,genre,rating,year,matched=False):
         movie = {
@@ -58,6 +58,7 @@ class MovieAgent:
             return None
 
         data = response.json()
+        print(data)
 
         if data.get("Response") != "True":
             return None
@@ -72,16 +73,24 @@ class MovieAgent:
 
 
 if __name__ == "__main__":
-      agent = MovieAgent("data/movies.json")
+    agent = MovieAgent("data/movies.json")
 
-      movie_name = input("Enter movie name: ")
+    movie_name = input("Enter movie name: ")
 
-      movie = agent.fetch_movie_details(movie_name)
+    movie = agent.fetch_movie_details(movie_name)
 
-      if movie:
-          print("\n Movie found from API:")
-          print(movie)
-      else:
-          print("\n Movie not found from API:")
+    if movie:
+        agent.add_movie(
+            title=movie["title"],
+            genre=movie["genre"],
+            rating=movie["rating"],
+            year=movie["year"],
+            matched=movie["matched"]
+        )
+        print("\nMovie saved successfully:")
+        print(movie)
+    else:
+        print("\nMovie not found from API")
+
 
 

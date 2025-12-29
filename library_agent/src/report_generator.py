@@ -12,8 +12,6 @@ class ReportGenerator:
         with open(self.csv_path, newline='', encoding="utf-8") as f:
             return list(csv.DictReader(f))
 
-    # ---------- Reports ----------
-
     def total_issues(self):
         return len(self.records)
 

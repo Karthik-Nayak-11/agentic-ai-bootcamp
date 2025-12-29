@@ -1,0 +1,7 @@
+
+- Python 3.8 or above
+- Internet connection (for API-based book addition)
+
+Install dependencies using:
+```bash
+pip install -r requirements.txt

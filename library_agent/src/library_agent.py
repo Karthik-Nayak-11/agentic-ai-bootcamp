@@ -8,7 +8,7 @@ class LibraryAgent:
         self.data_path = Path(data_path)
         self.books = self.load_books()
 
-    # ---------- Persistence ----------
+
     def load_books(self):
         if not self.data_path.exists():
             return []
@@ -19,7 +19,6 @@ class LibraryAgent:
         with open(self.data_path, "w", encoding="utf-8") as f:
             json.dump(self.books, f, indent=2)
 
-    # ---------- Core Features ----------
     def add_book(self, title, authors, category, year, rating=0, matched=False):
         book = {
             "title": title,
@@ -35,7 +34,6 @@ class LibraryAgent:
     def list_books(self):
         return self.books
 
-    # ---------- Search ----------
     def search_by_title(self, title):
         return [
             book for book in self.books
@@ -54,7 +52,6 @@ class LibraryAgent:
             if category.lower() in book["category"].lower()
         ]
 
-    # ---------- Recommendation ----------
     def recommend(self, min_rating=4):
         return [
             book for book in self.books
